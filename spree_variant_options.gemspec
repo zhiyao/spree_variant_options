@@ -36,5 +36,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('launchy')
   s.add_development_dependency('database_cleaner')
   s.add_development_dependency('debugger')
+  s.add_development_dependency("selenium-webdriver", '2.31.0')
+
 
 end

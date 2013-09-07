@@ -166,7 +166,6 @@ class ProductTest < ActionDispatch::IntegrationTest
       visit spree.product_path(@product)
 
       within("#product-variants") do
-        debugger
         size = find_link('M')
         size.click
         assert size["class"].include?("selected")
@@ -180,6 +179,18 @@ class ProductTest < ActionDispatch::IntegrationTest
 
       # add to cart button is enabled
       assert_nil find_button("Add To Cart")["disabled"]
+    end
+
+    should 'allow choose item with no variants (only master)' do
+      product = Factory(:product)
+      product.master.update_attribute :on_demand, true
+      assert_equal product.variants.size, 0
+      visit spree.product_path(product)
+      # add to cart button is enabled
+      assert_nil find_button("Add To Cart")["disabled"]
+      find_button("Add To Cart").click
+      assert page.has_content?('Subtotal: $17.00')
+      assert page.has_content?('Shopping Cart')
     end
 
     def teardown
