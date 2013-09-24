@@ -1,4 +1,4 @@
-# Spree Variant Options [![Build Status](https://secure.travis-ci.org/citrus/spree_variant_options.png)](http://travis-ci.org/citrus/spree_variant_options)
+# Spree Variant Options [![Build Status](https://secure.travis-ci.org/sbounmy/spree_variant_options.png)](http://travis-ci.org/sbounmy/spree_variant_options)
 
 
 Spree Variant Options is a very simple spree extension that replaces the radio-button variant selection with groups of option types and values. To get a better idea let's let a few images do the explaining.
@@ -26,7 +26,10 @@ If you don't already have an existing Spree site, [click here](https://gist.gith
 To install Spree Variant Options, just add the following to your Gemfile:
 
 ```ruby
+# Spree 1.3.X
 gem 'spree_variant_options', :git => 'git://github.com/sbounmy/spree_variant_options.git', :branch => "1-3-stable"
+# Spree 2.0.X
+gem 'spree_variant_options', :git => 'git://github.com/sbounmy/spree_variant_options.git', :branch => "2-0-stable"
 ```
 
 If you're on an older version of Spree, please reference the [Versionfile](https://github.com/citrus/spree_variant_options/blob/master/Versionfile) for your Spree version.
@@ -97,7 +100,7 @@ bundle exec rake cucumber
 bundle exec rake test
 
 # both
-bundle exec rake 
+bundle exec rake
 ```
 
 POW!
@@ -119,7 +122,7 @@ cd test/dummy
 rails s
 ```
 
-    
+
 ------------------------------------------------------------------------------
 Contributors
 ------------------------------------------------------------------------------
