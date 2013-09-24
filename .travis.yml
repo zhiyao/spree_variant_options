@@ -4,7 +4,6 @@ branches:
     - 1-3-stable
     - 2-0-stable
 rvm:
-  - 1.9.2
   - 1.9.3
 
 before_script:
