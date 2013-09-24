@@ -34,7 +34,7 @@ function VariantOptions(params) {
 
   var options = params['options'];
   var i18n = params['i18n'];
-  var allow_backorders = !params['track_inventory_levels'] ||  params['allow_backorders'];
+  var allow_backorders = !params['track_inventory_levels'];
   var allow_select_outofstock = params['allow_select_outofstock'];
   var default_instock = params['default_instock'];
 
@@ -88,7 +88,7 @@ function VariantOptions(params) {
   }
 
   function inventory(btns) {
-    var keys, variants, count = 0, selected = {};
+    var keys, variants, selected = {};
     var sels = $.map(divs.find('a.selected'), function(i) { return i.rel });
     $.each(sels, function(key, value) {
       key = value.split('-');
@@ -102,20 +102,21 @@ function VariantOptions(params) {
       }
     });
     btns.removeClass('in-stock out-of-stock unavailable').each(function(i, element) {
-      variants = get_variant_objects(element.rel);
-      keys = $.keys(variants);
+      var variants = get_variant_objects(element.rel);
+      var keys = $.keys(variants);
       if (keys.length == 0) {
         disable($(element).addClass('unavailable locked').unbind('click'));
       } else if (keys.length == 1) {
         _var = variants[keys[0]];
-        $(element).addClass((allow_backorders || _var.count || _var.on_demand) ? selection.length == 1 ? 'in-stock auto-click' : 'in-stock' : 'out-of-stock');
+        $(element).addClass(_var.in_stock ? selection.length == 1 ? 'in-stock auto-click' : 'in-stock' : 'out-of-stock');
       } else if (allow_backorders) {
         $(element).addClass('in-stock');
       } else {
+        var count = 0;
         $.each(variants, function(key, value) {
-          count += value.on_demand ? 1 : value.count
+          count += value.in_stock ? 1 : 0
         });
-        $(element).addClass(count ? 'in-stock' : 'out-of-stock');
+        $(element).addClass(count > 0 ? 'in-stock' : 'out-of-stock');
       }
     });
   }
@@ -181,7 +182,7 @@ function VariantOptions(params) {
     if (variant) {
       $('#variant_id, form[data-form-type="variant"] input[name$="[variant_id]"]').val(variant.id);
       $('#product-price .price').removeClass('unselected').text(variant.price);
-      if (variant.count > 0 || variant.on_demand || allow_backorders)
+      if (variant.in_stock)
         $('#cart-form button[type=submit]').attr('disabled', false).fadeTo(100, 1);
       $('form[data-form-type="variant"] button[type=submit]').attr('disabled', false).fadeTo(100, 1);
       try {

@@ -4,8 +4,8 @@ insert_into_file File.join('config', 'routes.rb'), :after => "Application.routes
   "  # Mount Spree's routes\n  mount Spree::Core::Engine, :at => '/'\n"
 end
 
-# Fix uninitialized constant Spree::User::DestroyWithOrdersError
-# template "spree_user_error_fix.rb", "config/initializers/spree_user_error_fix.rb"
+# Copy spree user initializer
+template "initializers/spree_user.rb", "config/initializers/spree_user.rb"
 
 # remove all stylesheets except core
 %w(admin store).each do |ns|
