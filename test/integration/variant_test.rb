@@ -199,14 +199,14 @@ class ProductTest < ActionDispatch::IntegrationTest
     end
 
     should 'allow choose item with no variants (only master)' do
-      product = create(:product)
+      product = create(:product, price: '21.99')
       product.master.stock_items.first.update_attribute :backorderable, true
-      assert_equal product.variants.size, 0
+      assert_equal 0, product.variants.size
       visit spree.product_path(product)
       # add to cart button is enabled
       assert_nil find_button("Add To Cart")["disabled"]
       find_button("Add To Cart").click
-      assert page.has_content?('Subtotal: $19.99')
+      assert page.has_content?('Subtotal: $21.99')
       assert page.has_content?('Shopping Cart')
     end
 
