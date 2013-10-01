@@ -1,2 +1,6 @@
 pt-BR:
+  spree:
+    preview: Visualização
+    attach: Anexar
+    detach_image: Remover Imagem
   select_a: "Seu %{name}: "
