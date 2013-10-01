@@ -6,6 +6,7 @@ Spree::Product.class_eval do
 
   def grouped_option_values
     @_grouped_option_values ||= option_values.group_by(&:option_type)
+    @_grouped_option_values.sort_by { |option_type, option_values| option_type.position }
   end
 
   def variants_for_option_value(value)
