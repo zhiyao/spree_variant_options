@@ -3,10 +3,10 @@ Spree::OptionValue.class_eval do
   attr_accessible :image
 
   has_attached_file :image,
-    :styles        => { :small => '40x30#', :large => '140x110#' },
-    :default_style => :small,
-    :url           => "/spree/option_values/:id/:style/:basename.:extension",
-    :path          => ":rails_root/public/spree/option_values/:id/:style/:basename.:extension"
+    :styles        => SpreeVariantOptions::VariantConfig[:option_value_styles],
+    :default_style => SpreeVariantOptions::VariantConfig[:option_value_default_style],
+    :url           => SpreeVariantOptions::VariantConfig[:option_value_url],
+    :path          => SpreeVariantOptions::VariantConfig[:option_value_path]
 
   def has_image?
     image_file_name && !image_file_name.empty?
