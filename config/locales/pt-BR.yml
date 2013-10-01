@@ -3,4 +3,4 @@ pt-BR:
     preview: Visualização
     attach: Anexar
     detach_image: Remover Imagem
-  select_a: "Seu %{name}: "
+    select_a: "%{name}: "
