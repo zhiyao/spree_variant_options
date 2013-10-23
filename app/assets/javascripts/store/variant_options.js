@@ -174,11 +174,11 @@ function VariantOptions(params) {
       } else {
         $('#product-price .price').html('<span class="price from">' + prices[0] + '</span> - <span class="price to">' + prices[prices.length - 1] + '</span>');
       }
-      return false;
+      return variants;
     }
   }
 
-  function toggle() {
+  function toggle(variants) {
     if (variant) {
       $('#variant_id, form[data-form-type="variant"] input[name$="[variant_id]"]').val(variant.id);
       $('#product-price .price').removeClass('unselected').text(variant.price);
@@ -191,6 +191,12 @@ function VariantOptions(params) {
         // depends on modified version of product.js
       }
     } else {
+
+      if (variants) {
+        variants_ids = $.keys(variants);
+        show_variant_images(variants_ids);
+      }
+
       $('#variant_id, form[data-form-type="variant"] input[name$="[variant_id]"]').val('');
       $('#cart-form button[type=submit], form[data-form-type="variant"] button[type=submit]').attr('disabled', true).fadeTo(0, 0.5);
       price = $('#product-price .price').addClass('unselected')
@@ -234,9 +240,9 @@ function VariantOptions(params) {
     parent.find('a.clear-button').css('display', 'inline-block');
     advance();
     handle_selected();
-    if (find_variant()) {
-      toggle();
-    }
+
+    variants = find_variant();
+    toggle(variants);
   }
 
   function handle_selected() {
