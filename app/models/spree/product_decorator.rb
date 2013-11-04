@@ -1,7 +1,7 @@
 Spree::Product.class_eval do
 
   def option_values
-    @_option_values ||= Spree::OptionValue.for_product(self).all
+    @_option_values ||= Spree::OptionValue.for_product(self)
   end
 
   def grouped_option_values
