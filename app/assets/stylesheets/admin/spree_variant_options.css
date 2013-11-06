@@ -5,3 +5,7 @@
 #images .field ul li {
   display: block !important;
 }
+
+#images #error-message {
+  color: #c00000;
+}

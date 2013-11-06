@@ -1,0 +1,18 @@
+$ ->
+  images = $('#images')
+
+  images.on 'submit', 'form', (e) ->
+    form = $(this)
+    option_types = $('.option-type-field', images)
+    option_type_count = option_types.size()
+
+    option_types_with_selected = 0
+    option_types.each ->
+      if $(this).find('input.option-value:checked').size() > 0
+        option_types_with_selected += 1
+        return true
+
+    if option_type_count != option_types_with_selected
+      e.preventDefault()
+      error_div = $('#error-message', images)
+      error_div.text(error_div.data('one-option-error'))
