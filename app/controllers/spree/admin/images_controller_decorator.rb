@@ -32,6 +32,7 @@ Spree::Admin::ImagesController.class_eval do
         end
       end
     else
+      viewable_id = params[:master_option] if params[:master_option]
       @image.viewable_type = 'Spree::Variant'
       @image.viewable_id = viewable_id
     end

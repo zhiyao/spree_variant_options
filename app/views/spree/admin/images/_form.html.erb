@@ -13,7 +13,13 @@
       </div>
     <% else %>
       <div data-hook="variant" class="field">
-        <%= f.label Spree::Variant.model_name.human %><br>
+        <%= f.label I18n.t(:other, scope: 'activerecord.models.spree/variant') %><br>
+
+        <%# Master variant associates an image for all option_values and option_types combinations  %>
+        <%= check_box_tag "master_option", @product.master.id, false, :id => "master_option" %>
+        <%= label_tag "master_option", Spree.t(:all) %>
+        <ul></ul>
+
         <% @grouped_option_values.each do |option_type, option_values| %>
           <div class="option-type-field">
             <%= check_box_tag "option_types[]", option_type.id, (params[:option_types] || []).include?(option_type.id.to_s), :id => "option_type_#{option_type.id}", :class => "option-type" %>

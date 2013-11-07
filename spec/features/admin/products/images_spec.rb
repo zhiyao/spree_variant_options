@@ -38,6 +38,28 @@ describe 'Product Images', js: true do
         end
       end
 
+      describe 'user check All checkbox' do
+        it 'allows user to upload an image to all variants' do
+          visit spree.admin_product_images_path(product)
+          click_link "new_image_link"
+          attach_file('image_attachment', file_path)
+          check 'All'
+
+          # Disable other options
+          page.all('.option-value').each do |ov_checkbox|
+            ov_checkbox.should_not be_checked
+          end
+
+          click_button "Update"
+          page.should have_content("successfully created!")
+
+          within("table.index") do
+            page.should have_css('tbody tr', :count => 1)
+            page.should have_content('All')
+          end
+        end
+      end
+
       it 'should not allow user upload image if at least one of all option types is checked' do
         visit spree.admin_product_images_path(product)
         click_link "new_image_link"
