@@ -7,6 +7,7 @@ describe 'spree/admin/images/_form.html.erb' do
     view.stub_chain(:f, :label) { 'A label' }
     view.stub_chain(:f, :file_field) { 'A file field' }
     view.stub_chain(:f, :text_area) { 'A text area' }
+    assign(:product, product)
   end
 
   context 'product has variants' do
@@ -15,6 +16,12 @@ describe 'spree/admin/images/_form.html.erb' do
       product.save
 
       assign(:grouped_option_values, product.option_values.group_by(&:option_type))
+    end
+
+    it 'shows an \'All\' checkbox with the product master variant id as value' do
+      render
+      rendered.should include("<input id=\"master_option\" name=\"master_option\" type=\"checkbox\" value=\"1\" />")
+      rendered.should include("<label for=\"master_option\">All</label>")
     end
 
     it 'shows checkboxes for selecting which variants will receive the uploaded image' do
