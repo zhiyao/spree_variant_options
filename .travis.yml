@@ -11,6 +11,8 @@ notifications:
 rvm:
   - 1.9.3
   - 2.0.0
+  - 2.1.1
 branches:
   only:
     - 2-1-stable
+    - 2-2-stable
