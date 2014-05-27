@@ -20,19 +20,18 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # Runtime
-  s.add_dependency('spree_core', '~> 2.1')
-  s.add_dependency('spree_api', '~> 2.1')
-  s.add_dependency('spree_frontend', '~> 2.1')
-  s.add_dependency('spree_backend',  '~> 2.1')
+  s.add_dependency('spree_core', '~> 2.2')
+  s.add_dependency('spree_api', '~> 2.2')
+  s.add_dependency('spree_frontend', '~> 2.2')
+  s.add_dependency('spree_backend',  '~> 2.2')
 
   # Development
-  s.add_development_dependency('spree_sample',     '~> 2.1')
+  s.add_development_dependency('spree_sample',     '~> 2.2')
   s.add_development_dependency('dummier',          '~> 0.3')
   s.add_development_dependency('shoulda',          '~> 3.5')
   s.add_development_dependency('shoulda-context',  '~> 1.1.5')
   s.add_development_dependency('shoulda-matchers', '~> 2.0')
   s.add_development_dependency('rspec-rails', '~> 2.0')
-  s.add_development_dependency('poltergeist', '~> 1.4.1')
   s.add_development_dependency('pry', '~> 0.9.12.2')
   s.add_development_dependency('m')
   s.add_development_dependency('factory_girl_rails', '~> 4.2.1')
