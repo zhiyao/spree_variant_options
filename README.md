@@ -1,4 +1,4 @@
-# Spree Variant Options [![Build Status](https://secure.travis-ci.org/tiagoamaro/spree_variant_options.png)](http://travis-ci.org/tiagoamaro/spree_variant_options)
+# Spree Variant Options [![Build Status](https://travis-ci.org/tiagoamaro/spree_variant_options.svg?branch=2-1-stable)](https://travis-ci.org/tiagoamaro/spree_variant_options)
 
 
 Spree Variant Options is a very simple spree extension that replaces the radio-button variant selection with groups of option types and values. To get a better idea let's let a few images do the explaining.
