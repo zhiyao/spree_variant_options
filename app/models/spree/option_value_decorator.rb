@@ -13,8 +13,11 @@ Spree::OptionValue.class_eval do
   end
 
   scope :for_product, lambda { |product|
-    uniq.where("spree_option_values_variants.variant_id IN (?)", product.variant_ids)
-    .joins(:variants).order_by_positions
+    sorted_variant_ids = product.variant_ids.sort do |id1, id2|
+      id1 <=> id2
+    end
+    uniq.where("spree_option_values_variants.variant_id IN (?)", sorted_variant_ids)
+    .joins(:variants)
   }
 
   scope :order_by_positions, joins(:option_type).order("#{Spree::OptionType.quoted_table_name}.position asc, #{quoted_table_name}.position asc")
