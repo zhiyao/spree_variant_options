@@ -204,9 +204,14 @@ function VariantOptions(params) {
   }
 
   function toggle() {
+    $('#product-description .original-price').addClass('hidden');
     if (variant) {
       $('#variant_id, form[data-form-type="variant"] input[name$="[variant_id]"]').val(variant.id);
       $('#product-description .price').removeClass('unselected').text(variant.price);
+      if(variant.price < variant.original_price)
+      {
+        $('#product-description .original-price').removeClass('hidden').text(variant.original_price);
+      }
       if (variant.in_stock)
         $('#cart-form button[type=submit]').attr('disabled', false).fadeTo(100, 1);
       $('form[data-form-type="variant"] button[type=submit]').attr('disabled', false).fadeTo(100, 1);
