@@ -12,6 +12,7 @@ Spree::Variant.class_eval do
       :in_stock => self.in_stock?,
       :price => number_to_currency(actual_price),
       :original_price => number_to_currency(self.original_price),
+      :sku => self.sku
     }
   end
 

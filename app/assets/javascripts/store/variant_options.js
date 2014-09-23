@@ -208,6 +208,7 @@ function VariantOptions(params) {
     if (variant) {
       $('#variant_id, form[data-form-type="variant"] input[name$="[variant_id]"]').val(variant.id);
       $('#product-description .price').removeClass('unselected').text(variant.price);
+      $('.product-sku').text(variant.sku)
       if(variant.price < variant.original_price)
       {
         $('#product-description .original-price').removeClass('hidden').text(variant.original_price);
@@ -227,7 +228,9 @@ function VariantOptions(params) {
       // Replace product price by "(select)" only when there are at least 1 variant not out-of-stock
       variants = $("div.variant-options.index-0")
       if (variants.find("a.option-value.out-of-stock").length != variants.find("a.option-value").length)
+      {
         price.text('(select)');
+      }
     }
   }
 
