@@ -9,6 +9,7 @@ var show_variant_images = function(variant_id) {
     var thumb = $($("ul.thumbnails li.vtmb tmb-" + variant_id + ":first").eq(0));
     thumb = $($('ul.thumbnails li:visible').eq(0));
     var newImg = thumb.find('a').attr('href');
+    thumb.find('a').click()
     if(!newImg)
     {
       newImg = '/default.png'
