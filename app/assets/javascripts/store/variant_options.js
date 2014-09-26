@@ -218,6 +218,17 @@ function VariantOptions(params) {
       $('form[data-form-type="variant"] button[type=submit]').attr('disabled', false).fadeTo(100, 1);
       $('.product-out-of-stock').addClass('hidden')
       $('.product-in-stock').removeClass('hidden')
+      $('.variant-properties').each(function()
+      {
+        if($(this).hasClass('variant-'+variant.id))
+        {
+          $(this).removeClass('hidden')
+        }
+        else
+        {
+          $(this).addClass('hidden')
+        }
+      })
       try {
         show_variant_images(variant.id);
       } catch(error) {
@@ -228,6 +239,10 @@ function VariantOptions(params) {
       $('#cart-form button[type=submit], form[data-form-type="variant"] button[type=submit]').attr('disabled', true).fadeTo(0, 0.5);
       $('.product-out-of-stock').removeClass('hidden')
       $('.product-in-stock').addClass('hidden')
+      $('.variant-properties').each(function()
+      {
+        $(this).addClass('hidden')
+      })
       price = $('#product-description .price').addClass('unselected')
       // Replace product price by "(select)" only when there are at least 1 variant not out-of-stock
       variants = $("div.variant-options.index-0")
